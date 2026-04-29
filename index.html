@@ -33,7 +33,9 @@
 <script>
 if('serviceWorker' in navigator){
   window.addEventListener('load',function(){
-    navigator.serviceWorker.register('/sw.js').catch(function(){});
+    navigator.serviceWorker.register('/sw.js').then(function(reg){
+      if(reg)reg.update();
+    }).catch(function(){});
   });
 }
 (function(){
@@ -49,7 +51,12 @@ if('serviceWorker' in navigator){
     deferred=e;
     show();
   });
-  if(isIOS)window.addEventListener('load',function(){setTimeout(show,1500);});
+  window.addEventListener('appinstalled',function(){
+    var b=document.getElementById('pm-install-banner');
+    if(b)b.remove();
+  });
+  if(document.readyState==='complete')setTimeout(show,1200);
+  else window.addEventListener('load',function(){setTimeout(show,1200);});
   function show(){
     if(document.getElementById('pm-install-banner'))return;
     var b=document.createElement('div');
@@ -82,7 +89,9 @@ if('serviceWorker' in navigator){
           else{sessionStorage.setItem(DISMISS_KEY,'1');b.remove();}
         });
       }else if(isIOS){
-        b.innerHTML='<div style="flex:1;font-size:13px;line-height:1.5">Tap <strong>Share</strong> &#x2191;, then <strong>Add to Home Screen</strong></div><button type="button" aria-label="Close" style="background:transparent;border:0;color:rgba(255,255,255,0.5);font-size:22px;cursor:pointer;padding:0 4px" onclick="document.getElementById(\'pm-install-banner\').remove();sessionStorage.setItem(\''+DISMISS_KEY+'\',\'1\')">&times;</button>';
+        b.innerHTML='<div style="flex:1;font-size:13px;line-height:1.5;color:#fff">Tap <strong>Share</strong> &#x2191; then <strong>Add to Home Screen</strong></div><button type="button" aria-label="Close" style="background:transparent;border:0;color:rgba(255,255,255,0.5);font-size:22px;cursor:pointer;padding:0 4px" onclick="document.getElementById(\'pm-install-banner\').remove();sessionStorage.setItem(\''+DISMISS_KEY+'\',\'1\')">&times;</button>';
+      }else{
+        b.innerHTML='<div style="flex:1;font-size:13px;line-height:1.5;color:#fff">Open your browser menu and choose <strong>Install app</strong> or <strong>Add to Home Screen</strong>.</div><button type="button" aria-label="Close" style="background:transparent;border:0;color:rgba(255,255,255,0.5);font-size:22px;cursor:pointer;padding:0 4px" onclick="document.getElementById(\'pm-install-banner\').remove();sessionStorage.setItem(\''+DISMISS_KEY+'\',\'1\')">&times;</button>';
       }
     };
     document.getElementById('pm-install-close').onclick=function(){
