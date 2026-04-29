@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline — Pen MindState</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#0a1628" />
+    <style>
+      html, body { margin: 0; padding: 0; height: 100%; }
+      body {
+        background: #050514;
+        color: #fff;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px;
+        box-sizing: border-box;
+      }
+      .wrap { max-width: 420px; }
+      .icon { font-size: 56px; margin-bottom: 20px; opacity: 0.6; }
+      h1 { font-size: 26px; font-weight: 800; margin: 0 0 12px; }
+      p { color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.6; margin: 0 0 24px; }
+      button {
+        background: #3b82f6;
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover { background: #2563eb; }
+      .brand { margin-top: 32px; font-size: 12px; color: rgba(255,255,255,0.3); }
+      .brand a { color: #3b82f6; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="icon">&#128246;</div>
+      <h1>You&rsquo;re offline</h1>
+      <p>Pen MindState can&rsquo;t reach the network right now. Check your connection and try again.</p>
+      <button onclick="location.reload()">Retry</button>
+      <div class="brand">Pen MindState &middot; <a href="https://newurbaninfluence.com">New Urban Influence</a></div>
+    </div>
+  </body>
+</html>
