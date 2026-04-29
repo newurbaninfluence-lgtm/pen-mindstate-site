@@ -1,4 +1,4 @@
-const CACHE = 'pm-v5';
+const CACHE = 'pm-v6';
 const PRECACHE = ['/', '/app.js', '/offline.html', '/manifest.json', '/icon.svg'];
 
 self.addEventListener('install', e => {
