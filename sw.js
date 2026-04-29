@@ -1,5 +1,5 @@
-const CACHE = 'pm-v3';
-const PRECACHE = ['/', '/offline.html', '/manifest.json'];
+const CACHE = 'pm-v4';
+const PRECACHE = ['/', '/offline.html', '/manifest.json', '/icon.svg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
